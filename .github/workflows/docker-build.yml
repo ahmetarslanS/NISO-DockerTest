@@ -26,4 +26,4 @@ jobs:
       run: docker buildx build -t ahmetarslann/docker_test:latest .
 
     - name: Push Docker Image to Docker Hub
-      run: docker buildx build --push -t ahmetarslan/docker_test:latest .
+      run: docker buildx build --push -t ahmetarslann/docker_test:latest .

@@ -1,10 +1,11 @@
-#Base image, web siteme uygun bir web sunucusu
-FROM nginx:latest
+# Base image
+FROM nginx:alpine
 
-#Web sitemin dizini
-COPY /C:/Users/samsung/Desktop/Deneme/NISO-DockerTest /usr/share/nginx/html
+# Dizin
+WORKDIR /usr/share/nginx/html/
 
-#Web sunucusunu çalıştır
-CMD [ "nginx", "-g", "daemon off;" ]
+# Kod
+COPY . .
 
-
+# Nginx'i çalıştır
+CMD ["nginx", "-g", "daemon off;"]

@@ -1,5 +1,5 @@
 # Base image
-FROM nginx:alpine
+FROM nginx:latest
 
 # Dizin
 WORKDIR /usr/share/nginx/html/

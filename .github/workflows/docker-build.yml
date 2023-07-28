@@ -50,4 +50,4 @@ jobs:
 
     - name: Test REST API
       run: |
-       curl http://localhost:8080
+       curl localhost:8080/hello

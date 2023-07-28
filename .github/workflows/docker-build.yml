@@ -41,6 +41,9 @@ jobs:
       run: |
         docker-compose -f docker-compose.yml up -d
         
+    - name: Check Container Status
+      run: docker-compose ps
+        
     - name: Test Web Application
       run: |
        curl http://localhost

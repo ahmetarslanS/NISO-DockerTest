@@ -40,3 +40,11 @@ jobs:
     - name: Deploy with Docker Compose
       run: |
         docker-compose -f docker-compose.yml up -d
+        
+    - name: Test Web Application
+      run: |
+       curl http://localhost
+
+    - name: Test REST API
+      run: |
+       curl http://localhost:8080

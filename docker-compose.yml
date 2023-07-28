@@ -1,0 +1,12 @@
+version: '3'
+services:
+  webapp:
+    image: ahmetarslann/docker_test:latest
+    ports:
+      - "80:80"
+    depends_on:
+      - restapi
+  restapi:
+    image: ahmetarslann/messenger-app:latest
+    ports:
+      - "8080:8080"

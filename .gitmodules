@@ -1,0 +1,3 @@
+[submodule "Java-REST-API-test"]
+	path = Java-REST-API-test
+	url = https://github.com/ahmetarslanS/Java-REST-API-test.git

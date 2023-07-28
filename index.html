@@ -6,6 +6,7 @@
 </head>
 <body>
     <div class="container">
+        <!-- Top Center -->
         <div class="row">
             <div class="col-12">
                 <div class="text-center">
@@ -17,53 +18,110 @@
             <div class="col-12">
                 <div class="text-center">
                     <h1>NISO Software Technologies INC.</h1>
-                    <div class="row">
-                        <div class = "col-12 col-lg-6">
-                            <div class="card">
-                                <img src="sf.jpg" class="card-img-top" height="135" width="200">
-                                <div class="card-body">
-                                    <h2 class="card-title">Smart Factory <span class="badge bg-info">NISO</span></h2>
-                                    <p class="card-text">Digital Transformation</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-lg-6">
-                            <div class="card">
-                                <img src="sd.jpg" class="card-img-top" height="135" width="200">
-                                <div class="card-body">
-                                    <h2 class="card-title">Software Development <span class="badge bg-info">NISO</span></h2>
-                                    <p class="card-text">Automative Software</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
-        <div class="col-12 col-lg-6">
-            <h2 class="text-center">Open Positions</h2>
-            <table class="table">
-                <tr>
-                    <td>DevOps Engineer</td>
-                    <td>Hybrid</td>
-                </tr>
-                <tr>
-                    <td>QA Engineer</td>
-                    <td>On-Site</td>
-                </tr>
-                <tr>
-                    <td>Project Manager</td>
-                    <td>Remote</td>
-                </tr>
-            </table>
-            <div class="alert alert-info" role="alert">
-                The answer is SOFTWARE.
+
+        <!-- Left Section: Smart Factory and Open Positions -->
+        <div class="row">
+            <div class="col-12 col-lg-6">
+                <div class="card">
+                    <img src="sf.jpg" class="card-img-top" height="135" width="200">
+                    <div class="card-body">
+                        <h2 class="card-title">Smart Factory <span class="badge bg-info">NISO</span></h2>
+                        <p class="card-text">Digital Transformation</p>
+                    </div>
+                </div>
             </div>
-            <a href="location.html">
-                <p class="text-center"> Contact Us</p>
-            </a>
+            <div class="col-12 col-lg-6">
+                <div class="card">
+                    <img src="sd.jpg" class="card-img-top" height="135" width="200">
+                    <div class="card-body">
+                        <h2 class="card-title">Software Development <span class="badge bg-info">NISO</span></h2>
+                        <p class="card-text">Automotive Software</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Right Section: Software Development and Java REST API Messenger -->
+        <div class="row">
+            <div class="col-12 col-lg-6">
+                <h2 class="text-center">Open Positions</h2>
+                <table class="table">
+                    <tr>
+                        <td>DevOps Engineer</td>
+                        <td>Hybrid</td>
+                    </tr>
+                    <tr>
+                        <td>QA Engineer</td>
+                        <td>On-Site</td>
+                    </tr>
+                    <tr>
+                        <td>Project Manager</td>
+                        <td>Remote</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-12 col-lg-6">
+                <h2 class="text-center">Java REST API Messenger</h2>
+                <!-- Add the form for API communication here -->
+                <form id="apiForm" class="mb-3">
+                    <div class="mb-3">
+                        <label for="messageType" class="form-label">Select Message Type:</label>
+                        <select class="form-select" id="messageType" required>
+                            <option value="hello">Hello</option>
+                            <option value="goodbye">Goodbye</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Enter Your Name:</label>
+                        <input type="text" class="form-control" id="name" required>
+                    </div>
+                    <div class="text-center"><button type="submit" class="btn btn-primary">Submit</button></div>
+                    
+                </form>
+                <div id="apiResponse" class="alert" role="alert" style="display: none;"></div>
+            </div>
+        </div>
+
+        <!-- Bottom Section -->
+        <div class="row">
+            <div class="col-12 col-lg-6">
+                <div class="alert alert-info" role="alert">
+                    The answer is SOFTWARE.
+                </div>
+            </div>
+            <div class="col-12 col-lg-6">
+                <a href="location.html">
+                    <p class="text-center">Contact Us</p>
+                </a>
+            </div>
         </div>
     </div>
+
     <script src="bootstrap.bundle.min.js"></script>
+    <script>
+        // Function to handle form submission
+        document.getElementById('apiForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const messageType = document.getElementById('messageType').value;
+            const name = document.getElementById('name').value;
+
+            // Replace API_IP_ADDRESS and API_PORT with the actual IP address and port of your Java REST API container
+            const apiUrl = `http://restapi:8080/${messageType}?name=${name}`;
+
+            fetch(apiUrl)
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('apiResponse').innerText = data;
+                    document.getElementById('apiResponse').style.display = 'block';
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        });
+    </script>
 </body>
 </html>

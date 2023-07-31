@@ -90,7 +90,7 @@
         <div class="row">
             <div class="col-12 col-lg-6">
                 <div class="alert alert-info" role="alert">
-                    The answer is SOFTWARE.
+                    The answer is ... SOFTWARE.
                 </div>
             </div>
             <div class="col-12 col-lg-6">
@@ -113,15 +113,26 @@
             const apiUrl = `http://localhost:8080/${messageType}?name=${name}`;
 
             fetch(apiUrl)
-                .then(response => response.text())
-                .then(data => {
-                    document.getElementById('apiResponse').innerText = data;
-                    document.getElementById('apiResponse').style.display = 'block';
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                });
-        });
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to connect to the REST API. Please try again later.');
+                }
+                return response.text();
+            })
+            .then(data => {
+                document.getElementById('apiResponse').innerText = data;
+                document.getElementById('apiResponse').classList.add('alert-success');
+                document.getElementById('apiResponse').classList.remove('alert-danger');
+                document.getElementById('apiResponse').style.display = 'block';
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                document.getElementById('apiResponse').innerText = error.message;
+                document.getElementById('apiResponse').classList.add('alert-danger');
+                document.getElementById('apiResponse').classList.remove('alert-success');
+                document.getElementById('apiResponse').style.display = 'block';
+            });
+    });
     </script>
 </body>
 </html>

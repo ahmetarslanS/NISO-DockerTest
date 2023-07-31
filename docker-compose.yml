@@ -1,6 +1,7 @@
 version: '3'
 services:
   webapp:
+    container_name: webapp
     image: ahmetarslann/docker_test:latest
     ports:
       - "80:80"
@@ -9,6 +10,7 @@ services:
     networks:
       - my_network
   restapi:
+    container_name: restapi
     image: ahmetarslann/messenger-app:latest
     ports:
       - "8080:8080"

@@ -6,7 +6,13 @@ services:
       - "80:80"
     depends_on:
       - restapi
+    networks:
+      - my_network
   restapi:
     image: ahmetarslann/messenger-app:latest
     ports:
       - "8080:8080"
+    networks:
+      - my_network
+networks:
+  my_network

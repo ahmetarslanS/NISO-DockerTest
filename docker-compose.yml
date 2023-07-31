@@ -15,4 +15,4 @@ services:
     networks:
       - my_network
 networks:
-  my_network
+  my_network:

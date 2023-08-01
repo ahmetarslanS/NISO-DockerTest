@@ -110,7 +110,7 @@
             const name = document.getElementById('name').value;
 
             // Replace API_IP_ADDRESS and API_PORT with the actual IP address and port of your Java REST API container
-            const apiUrl = `http://restapi:8080/${messageType}?name=${name}`;
+            const apiUrl = `http://34.141.115.209:8080/${messageType}?name=${name}`;
 
             fetch(apiUrl)
             .then(response => {

@@ -9,6 +9,8 @@ services:
       - restapi
     networks:
       - backend
+    links:
+      - restapi
   restapi:
     container_name: restapi
     image: ahmetarslann/messenger-app:latest

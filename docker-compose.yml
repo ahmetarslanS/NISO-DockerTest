@@ -8,13 +8,13 @@ services:
     depends_on:
       - restapi
     networks:
-      - my_network
+      - backend
   restapi:
     container_name: restapi
     image: ahmetarslann/messenger-app:latest
     ports:
       - "8080:8080"
     networks:
-      - my_network
+      - backend
 networks:
-  my_network:
+  backend: {}

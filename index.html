@@ -8,7 +8,6 @@
     <div class="container">
         <!-- Top Center TEST COMMENT -->
        
-
         <div class="row">
             <div class="col-12">
                 <div class="text-center">
@@ -44,7 +43,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
 
         <!-- Right Section: Software Development and Java REST API Messenger -->
@@ -77,12 +75,13 @@
                             <option value="goodbye">Goodbye</option>
                         </select>
                     </div>
-                    <div class="mb-3">
+                    <div class="mb3">
                         <label for="name" class="form-label">Enter Your Name:</label>
                         <input type="text" class="form-control" id="name" required>
                     </div>
-                    <div class="text-center"><button type="submit" class="btn btn-primary">Submit</button></div>
-                    
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
                 </form>
                 <div id="apiResponse" class="alert" role="alert" style="display: none;"></div>
             </div>
@@ -105,40 +104,39 @@
 
     <script src="bootstrap.bundle.min.js"></script>
     <script>
-        // Function to handle form submission
         document.getElementById('apiForm').addEventListener('submit', function(event) {
-        event.preventDefault();
-        const messageType = document.getElementById('messageType').value;
-        const name = document.getElementById('name').value;
+            event.preventDefault();
+            const messageType = document.getElementById('messageType').value;
+            const name = document.getElementById('name').value;
 
-        // Replace API_IP_ADDRESS and API_PORT with the actual IP address and port of your Java REST API container
-        const apiUrl = `http://34.107.119.177:8080/${messageType}?name=${name}`;
+            // Use the Docker Compose service name 'restapi' and the internal port
+            const apiUrl = `http://restapi:8080/${messageType}?name=${name}`;
 
-        fetch(apiUrl)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Failed to connect to the REST API. Please try again later.');
-            }
-            return response.json(); // Parse the response as JSON
-        })
-        .then(data => {
-            // Get the custom message from the response
-            const message = data.content;
+            fetch(apiUrl)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to connect to the REST API. Please try again later.');
+                }
+                return response.json(); // Parse the response as JSON
+            })
+            .then(data => {
+                // Get the custom message from the response
+                const message = data.content;
 
-            // Show the custom message to the user
-            document.getElementById('apiResponse').innerText = message;
-            document.getElementById('apiResponse').classList.add('alert-success');
-            document.getElementById('apiResponse').classList.remove('alert-danger');
-            document.getElementById('apiResponse').style.display = 'block';
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            document.getElementById('apiResponse').innerText = error.message;
-            document.getElementById('apiResponse').classList.add('alert-danger');
-            document.getElementById('apiResponse').classList.remove('alert-success');
-            document.getElementById('apiResponse').style.display = 'block';
+                // Show the custom message to the user
+                document.getElementById('apiResponse').innerText = message;
+                document.getElementById('apiResponse').classList.add('alert-success');
+                document.getElementById('apiResponse').classList.remove('alert-danger');
+                document.getElementById('apiResponse').style.display = 'block';
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                document.getElementById('apiResponse').innerText = error.message;
+                document.getElementById('apiResponse').classList.add('alert-danger');
+                document.getElementById('apiResponse').classList.remove('alert-success');
+                document.getElementById('apiResponse').style.display = 'block';
+            });
         });
-    });
-</script>
+    </script>
 </body>
 </html>
